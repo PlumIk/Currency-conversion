@@ -44,28 +44,32 @@
             VerticalAlignment="Center"/>
 
         <TextBlock Grid.Column="0" Grid.Row="1"
-            Text="Value 1 about"
+            Text="{Binding Type1, Mode=TwoWay}"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
         
         <TextBlock Grid.Column="2" Grid.Row="1"
-            Text="Value 2 about"
+            Text="{Binding Type1, Mode=TwoWay}"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
 
         <HyperlinkButton Grid.Column="0" Grid.Row="2"
-            Content="Value 1 swap "
+            x:Name="LeftSwap"
+            Click="LeftSwap_Click"
+            Content="Изменить валюту"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
 
         <HyperlinkButton Grid.Column="2" Grid.Row="2"
-            Content="Value 2 swap "
+            x:Name="RightSwap"
+            Click="RightSwap_Click"             
+            Content="Изменить валюту"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
