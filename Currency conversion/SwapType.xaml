@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.DataContext>
-        <local:MainViewModel x:Name="VM"/>
+        <local:SwapViewModel x:Name="VM"/>
     </Page.DataContext>
     <StackPanel x:Name="MyStack"
        Orientation="Vertical"

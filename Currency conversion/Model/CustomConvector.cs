@@ -4,15 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Currency_conversion.Model
+namespace Currency_conversion
 {
     internal class CustomConvector
     {
-        private Dictionary<string, double> _valuePairs;
-        private Dictionary<string, string> _idName;
+        private readonly Dictionary<string, double> _valuePairs = new Dictionary<string, double>();
+        public readonly List<string> _idName = new List<string>();
 
-        
+        public CustomConvector()
+        {
+            _idName.Add("RU");
+            _valuePairs["RU"] = 1;
+            _idName.Add("USD");
+            _valuePairs["USD"] = 75;
 
+        }
         private double ConvertToZero(double value, string type)
         {
             double ret = value;

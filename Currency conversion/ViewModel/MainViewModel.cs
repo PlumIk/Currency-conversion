@@ -10,10 +10,12 @@ namespace Currency_conversion
     {
         private double _value1 = 1;
         private double _value2 = 1;
-        private string _type1 = "RU";
-        private string _type2 = "RU";
-        public bool swapLeft = false;
-        public bool swapRight = false;
+        private SwapViewModel _swapViewModel = new SwapViewModel();
+
+        public void init()
+        {
+            _swapViewModel._customConvector = new CustomConvector();
+        }
         public double Value1
         {
             get
@@ -54,32 +56,37 @@ namespace Currency_conversion
         {
             get
             {
-                return _type1;
+                return _swapViewModel.Type1;
             }
-            set
-            {
-                if (_type1 != value)
-                {
-                    _type1 = value;
-                    OnPropertyChanged("Type1");
-                }
-            }
+            set{}
         }
 
         public string Type2
         {
             get
             {
-                return _type2;
+                return _swapViewModel.Type2;
             }
-            set
-            {
-                if (_type2 != value)
-                {
-                    _type2 = value;
-                    OnPropertyChanged("Type2");
-                }
-            }
+            set{}
+        }
+
+        public SwapViewModel GetSwapViewModel()
+        {
+            return _swapViewModel;
+        }
+        public void SetSwapViewModel(SwapViewModel swapViewModel)
+        {
+            _swapViewModel= swapViewModel;
+            OnPropertyChanged("Type1");
+            OnPropertyChanged("Type2");
+        }
+
+        public void SwapLeft(bool value)
+        {
+            if (value)
+                _swapViewModel.IsLeft = true;
+            else
+                _swapViewModel.IsRight = true;
         }
     }
 }

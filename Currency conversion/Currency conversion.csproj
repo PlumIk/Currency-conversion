@@ -130,6 +130,7 @@
     <Compile Include="ViewModel\Converters\StringToDoubleConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainViewModelBase.cs" />
+    <Compile Include="ViewModel\SwapViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

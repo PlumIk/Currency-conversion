@@ -29,15 +29,27 @@ namespace Currency_conversion
 
         private void LeftSwap_Click(object sender, RoutedEventArgs e)
         {
-            VM.swapLeft = true;
-            Frame.Navigate(typeof(SwapType), VM);
+            VM.SwapLeft(true); 
+            Frame.Navigate(typeof(SwapType), VM.GetSwapViewModel());
 
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null)
+            {
+                VM.SetSwapViewModel((SwapViewModel) e.Parameter);
+            }
+            else
+            {
+                VM.init();
+            }
         }
 
         private void RightSwap_Click(object sender, RoutedEventArgs e)
         {
-            VM.swapRight = true;
-            Frame.Navigate(typeof(SwapType), VM);
+            VM.SwapLeft(false);
+            Frame.Navigate(typeof(SwapType), VM.GetSwapViewModel());
         }
     }
 }

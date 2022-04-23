@@ -29,42 +29,47 @@ namespace Currency_conversion
         public SwapType()
         {
             this.InitializeComponent();
-            foreach (var swapType in swapTypes)
-            {
-                Button messageButton = new Button();
-                messageButton.Content = swapType;
-                messageButton.Width = 120;
-                messageButton.Height = 40;
-                messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.Gray);
-                messageButton.Click += this.Click;
-                MyStack.Children.Add(messageButton);
-            }
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
             {
-                var one = (MainViewModel)e.Parameter;
-                VM.swapLeft = one.swapLeft;
-                VM.swapRight = one.swapRight;
-                string a = "Error";
-                if (one.swapLeft)
-                    a = "Left";
-                else if (one.swapRight)
-                    a = "Right";
-                swapTypes.Add(a);
+                try
+                {
+                    VM.FillMe((SwapViewModel)e.Parameter);
+                    foreach (var swapType in VM.GetId())
+                    {
+                        Button messageButton = new Button();
+                        messageButton.Content = swapType;
+                        messageButton.Width = 120;
+                        messageButton.Height = 40;
+                        messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.Gray);
+                        messageButton.Click += this.Click;
+                        MyStack.Children.Add(messageButton);
+                    }
+                }catch (Exception)
+                {
+
+                }
+
             }
         }
 
         private void Click(object sender, RoutedEventArgs e)
         {
             Button messageButton = (Button)sender;
-            var a = messageButton.Content;
-            if (VM.swapLeft)
-                VM.Type1 = sender.ToString();
-            else if (VM.swapRight)
-                VM.Type2 = sender.ToString();
+            var a = messageButton.Content.ToString();
+            if (VM.IsLeft)
+            {
+                VM.Type1 = a;
+                VM.IsLeft = false;
+            } else if (VM.IsRight)
+            {
+                VM.Type2 = a;
+                VM.IsRight = false;
+            }
             Frame.Navigate(typeof(MainPage), VM);
         }
     }
