@@ -8,9 +8,9 @@ namespace Currency_conversion
 {
     internal class MainViewModel : MainViewModelBase
     {
-        private string _value1;
-        private string _value2;
-        public string Value1
+        private double _value1 = 1;
+        private double _value2 = 1;
+        public double Value1
         {
             get
             {
@@ -21,11 +21,14 @@ namespace Currency_conversion
                 if (_value1 != value)
                 {
                     _value1 = value;
+                    _value2 = _value1;
+                    OnPropertyChanged("Value1");
+                    OnPropertyChanged("Value2");
                 }
             }
         }
 
-        public string Value2
+        public double Value2
         {
             get
             {
@@ -36,6 +39,9 @@ namespace Currency_conversion
                 if (_value2 != value)
                 {
                     _value2 = value;
+                    _value1 = _value2;
+                    OnPropertyChanged("Value1");
+                    OnPropertyChanged("Value2");
                 }
             }
         }
