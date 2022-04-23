@@ -7,7 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.DataContext>
+        <local:MainViewModel x:Name="VM"/>
+    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -21,7 +23,7 @@
         </Grid.ColumnDefinitions>
         
         <TextBox Grid.Column="0" Grid.Row="0"
-            Text="Value 1"
+            Text="{Binding Value1, Mode=TwoWay}"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
@@ -32,7 +34,7 @@
             Stretch="Fill"/>
 
         <TextBox Grid.Column="2" Grid.Row="0"
-            Text="Value 2"
+            Text="{Binding Value2, Mode=TwoWay}"
             Width="Auto"
             Height="Auto"
             HorizontalAlignment="Center"
