@@ -26,5 +26,18 @@ namespace Currency_conversion
         {
             this.InitializeComponent();
         }
+
+        private void LeftSwap_Click(object sender, RoutedEventArgs e)
+        {
+            VM.swapLeft = true;
+            Frame.Navigate(typeof(SwapType), VM);
+
+        }
+
+        private void RightSwap_Click(object sender, RoutedEventArgs e)
+        {
+            VM.swapRight = true;
+            Frame.Navigate(typeof(SwapType), VM);
+        }
     }
 }
