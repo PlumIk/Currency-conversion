@@ -22,10 +22,6 @@ namespace Currency_conversion
     /// </summary>
     public sealed partial class SwapType : Page
     {
-        List<string> swapTypes = new List<string>()
-        {
-            "one", "Two","one more"
-        };
         public SwapType()
         {
             this.InitializeComponent();
