@@ -8,15 +8,13 @@ namespace Currency_conversion
 {
     internal class CustomConvector
     {
-        private readonly Dictionary<string, double> _valuePairs = new Dictionary<string, double>();
-        public readonly List<string> _idName = new List<string>();
+        private readonly Dictionary<string, double> _valuePairs ;
+        public readonly List<string> _idName ;
 
-        public CustomConvector()
+        public CustomConvector( DataGet dataGet)
         {
-            _idName.Add("RU");
-            _valuePairs["RU"] = 1;
-            _idName.Add("USD");
-            _valuePairs["USD"] = 75;
+            _idName = dataGet.GetNames();
+            _valuePairs = dataGet.GetValues();
 
         }
         private double ConvertToZero(double value, string type)

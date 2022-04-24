@@ -14,7 +14,7 @@ namespace Currency_conversion
 
         public void init()
         {
-            _swapViewModel._customConvector = new CustomConvector();
+            _swapViewModel._customConvector = new CustomConvector(new FromSite());
         }
         public double Value1
         {
