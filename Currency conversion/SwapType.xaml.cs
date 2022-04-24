@@ -29,7 +29,7 @@ namespace Currency_conversion
                     foreach (var swapType in VM.GetShortName())
                     {
                         Button messageButton = new Button();
-                        messageButton.Content = VM._customConvector._names[swapType];
+                        messageButton.Content = VM.GetNames()[swapType];
                         messageButton.Tag = swapType;
                         messageButton.Margin = new Thickness(3, 3, 3, 3);
                         messageButton.VerticalAlignment = VerticalAlignment.Center;
