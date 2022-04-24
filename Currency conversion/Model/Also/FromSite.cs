@@ -13,42 +13,62 @@ namespace Currency_conversion
 {
     internal class FromSite : DataGet
     {
-        private List<string> _name = new List<string>();
+        private List<string> _shortName = new List<string>();
         private Dictionary<string, double> _value = new Dictionary<string, double>();
+        private Dictionary<string, string> _names = new Dictionary<string, string>();
 
         public FromSite()
         {
-            var json = new WebClient().DownloadString("https://www.cbr-xml-daily.ru/daily_json.js");
-            var example = JsonConvert.DeserializeObject<Example>(json);
+            try
+            {
+                var json = new WebClient().DownloadString("https://www.cbr-xml-daily.ru/daily_json.js");
+                var example = JsonConvert.DeserializeObject<Example>(json);
 
-            _name.Add(example.Valute.AUD.CharCode);
-            _value[example.Valute.AUD.CharCode] = example.Valute.AUD.Value / example.Valute.AUD.Nominal;
+                _shortName.Add(example.Valute.AUD.CharCode);
+                _value[example.Valute.AUD.CharCode] = example.Valute.AUD.Value / example.Valute.AUD.Nominal;
+                _names[example.Valute.AUD.CharCode] = $"{example.Valute.AUD.Name} ({example.Valute.AUD.CharCode})";
 
-            _name.Add(example.Valute.BYN.CharCode);
-            _value[example.Valute.BYN.CharCode] = example.Valute.BYN.Value / example.Valute.BYN.Nominal;
+                _shortName.Add(example.Valute.BYN.CharCode);
+                _value[example.Valute.BYN.CharCode] = example.Valute.BYN.Value / example.Valute.BYN.Nominal;
+                _names[example.Valute.BYN.CharCode] = $"{example.Valute.BYN.Name} ({example.Valute.BYN.CharCode})";
 
-            _name.Add(example.Valute.BRL.CharCode);
-            _value[example.Valute.BRL.CharCode] = example.Valute.BRL.Value / example.Valute.BRL.Nominal;
+                _shortName.Add(example.Valute.BRL.CharCode);
+                _value[example.Valute.BRL.CharCode] = example.Valute.BRL.Value / example.Valute.BRL.Nominal;
+                _names[example.Valute.BRL.CharCode] = $"{example.Valute.BRL.Name} ({example.Valute.BRL.CharCode})";
 
-            _name.Add(example.Valute.USD.CharCode);
-            _value[example.Valute.USD.CharCode] = example.Valute.USD.Value / example.Valute.USD.Nominal;
+                _shortName.Add(example.Valute.USD.CharCode);
+                _value[example.Valute.USD.CharCode] = example.Valute.USD.Value / example.Valute.USD.Nominal;
+                _names[example.Valute.USD.CharCode] = $"{example.Valute.USD.Name} ({example.Valute.USD.CharCode})";
 
-            _name.Add(example.Valute.EUR.CharCode);
-            _value[example.Valute.EUR.CharCode] = example.Valute.EUR.Value / example.Valute.EUR.Nominal;
+                _shortName.Add(example.Valute.EUR.CharCode);
+                _value[example.Valute.EUR.CharCode] = example.Valute.EUR.Value / example.Valute.EUR.Nominal;
+                _names[example.Valute.EUR.CharCode] = $"{example.Valute.EUR.Name} ({example.Valute.EUR.CharCode})";
 
-            _name.Add(example.Valute.KZT.CharCode);
-            _value[example.Valute.KZT.CharCode] = example.Valute.KZT.Value / example.Valute.KZT.Nominal;
+                _shortName.Add(example.Valute.KZT.CharCode);
+                _value[example.Valute.KZT.CharCode] = example.Valute.KZT.Value / example.Valute.KZT.Nominal;
+                _names[example.Valute.KZT.CharCode] = $"{example.Valute.KZT.Name} ({example.Valute.KZT.CharCode})";
 
-            _name.Add(example.Valute.JPY.CharCode);
-            _value[example.Valute.JPY.CharCode] = example.Valute.JPY.Value / example.Valute.JPY.Nominal;
-
-            _name.Add("RU");
-            _value["RU"] = 1;
+                _shortName.Add(example.Valute.JPY.CharCode);
+                _value[example.Valute.JPY.CharCode] = example.Valute.JPY.Value / example.Valute.JPY.Nominal;
+                _names[example.Valute.JPY.CharCode] = $"{example.Valute.JPY.Name} ({example.Valute.JPY.CharCode})";
+            }
+            catch (Exception) { }
+            finally
+            {
+                _shortName.Add("RU");
+                _value["RU"] = 1;
+                _names["RU"] = $"Российский рубль (RU)";
+            }
         }
 
-        public List<string> GetNames()
+        public Dictionary<string, string> GetNames()
         {
-            return _name;
+            return _names;
+        }
+
+        public List<string> GetShortNames()
+        {
+            return _shortName;
         }
 
         public Dictionary<string, double> GetValues()

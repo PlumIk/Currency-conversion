@@ -8,13 +8,15 @@ namespace Currency_conversion
 {
     internal class CustomConvector
     {
-        private readonly Dictionary<string, double> _valuePairs ;
-        public readonly List<string> _idName ;
+        private readonly Dictionary<string, double> _values ;
+        public readonly List<string> _shortNames ;
+        public readonly Dictionary<string,string> _names ;
 
         public CustomConvector( DataGet dataGet)
         {
-            _idName = dataGet.GetNames();
-            _valuePairs = dataGet.GetValues();
+            _shortNames = dataGet.GetShortNames();
+            _values = dataGet.GetValues();
+            _names = dataGet.GetNames();
 
         }
         private double ConvertToZero(double value, string type)
@@ -22,7 +24,7 @@ namespace Currency_conversion
             double ret = value;
             if (type != null && value != 0)
             {
-                ret *= _valuePairs[type];
+                ret *= _values[type];
             }
             else
             {
@@ -38,7 +40,7 @@ namespace Currency_conversion
             double ret = value;
             if (type != null && value != 0)
             {
-                ret /= _valuePairs[type];
+                ret /= _values[type];
             }
             else
             {

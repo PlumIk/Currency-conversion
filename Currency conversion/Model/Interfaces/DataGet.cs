@@ -8,7 +8,8 @@ namespace Currency_conversion
 {
     public interface DataGet
     {
-        List<string> GetNames();
+        List<string> GetShortNames();
         Dictionary<string, double> GetValues();
+        Dictionary<string, string> GetNames();
     }
 }

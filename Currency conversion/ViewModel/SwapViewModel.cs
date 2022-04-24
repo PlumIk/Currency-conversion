@@ -48,7 +48,7 @@ namespace Currency_conversion
 
         public List<string> GetId()
         {
-            return new List<string>(_customConvector._idName.Select(x => x.ToString()));
+            return new List<string>(_customConvector._shortNames.Select(x => x.ToString()));
         }
 
         public void FillMe(SwapViewModel swapViewModel)

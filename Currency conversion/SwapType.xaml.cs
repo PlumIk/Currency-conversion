@@ -38,17 +38,21 @@ namespace Currency_conversion
                     foreach (var swapType in VM.GetId())
                     {
                         Button messageButton = new Button();
-                        messageButton.Content = swapType;
-                        messageButton.Width = 120;
-                        messageButton.Height = 40;
-                        messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.Gray);
+                        messageButton.Content = VM._customConvector._names[swapType];
+                        messageButton.Tag = swapType;
+                        messageButton.Margin = new Thickness(3, 3, 3, 3);
+                        messageButton.VerticalAlignment = VerticalAlignment.Center;
+                        messageButton.HorizontalAlignment = HorizontalAlignment.Center;
+                        if ((VM.IsLeft && swapType == VM.Type1)||(VM.IsRight && swapType == VM.Type2))
+                            messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.Gray);
+                        else 
+                            messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.DarkGray);
+                        
                         messageButton.Click += this.Click;
                         MyStack.Children.Add(messageButton);
                     }
-                }catch (Exception)
-                {
-
                 }
+                catch (Exception){}
 
             }
         }
@@ -56,7 +60,7 @@ namespace Currency_conversion
         private void Click(object sender, RoutedEventArgs e)
         {
             Button messageButton = (Button)sender;
-            var a = messageButton.Content.ToString();
+            var a = messageButton.Tag.ToString();
             if (VM.IsLeft)
             {
                 VM.Type1 = a;
