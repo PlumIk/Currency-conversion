@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 
 
@@ -13,9 +10,9 @@ namespace Currency_conversion
 {
     internal class FromSite : DataGet
     {
-        private List<string> _shortName = new List<string>();
-        private Dictionary<string, double> _value = new Dictionary<string, double>();
-        private Dictionary<string, string> _names = new Dictionary<string, string>();
+        private readonly List<string> _shortName = new List<string>();
+        private readonly Dictionary<string, double> _value = new Dictionary<string, double>();
+        private readonly Dictionary<string, string> _names = new Dictionary<string, string>();
 
         public FromSite()
         {

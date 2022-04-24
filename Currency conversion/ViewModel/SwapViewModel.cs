@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Currency_conversion
 {
@@ -10,9 +7,9 @@ namespace Currency_conversion
     {
         private string _type1 = "RU";
         private string _type2 = "RU";
-        public CustomConvector _customConvector = null;
-        public bool IsLeft = false;
-        public bool IsRight = false;
+        private CustomConvector _customConvector = null;
+        public bool IsLeft { get; set; } = false;
+        public bool IsRight { get; set; } = false;
 
         public string Type1
         {
@@ -28,6 +25,11 @@ namespace Currency_conversion
                     OnPropertyChanged("Type1");
                 }
             }
+        }
+
+        internal void init()
+        {
+            _customConvector = new CustomConvector(new FromSite());
         }
 
         public string Type2
@@ -46,9 +48,19 @@ namespace Currency_conversion
             }
         }
 
-        public List<string> GetId()
+        public List<string> GetShortName()
         {
             return new List<string>(_customConvector._shortNames.Select(x => x.ToString()));
+        }
+
+        public Dictionary<string, string> GetNames()
+        {
+            return _customConvector._names;
+        }
+
+        public CustomConvector GetCustomConvector()
+        {
+            return this._customConvector;
         }
 
         public void FillMe(SwapViewModel swapViewModel)

@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
@@ -35,7 +26,7 @@ namespace Currency_conversion
                 try
                 {
                     VM.FillMe((SwapViewModel)e.Parameter);
-                    foreach (var swapType in VM.GetId())
+                    foreach (var swapType in VM.GetShortName())
                     {
                         Button messageButton = new Button();
                         messageButton.Content = VM._customConvector._names[swapType];
@@ -44,9 +35,9 @@ namespace Currency_conversion
                         messageButton.VerticalAlignment = VerticalAlignment.Center;
                         messageButton.HorizontalAlignment = HorizontalAlignment.Center;
                         if ((VM.IsLeft && swapType == VM.Type1)||(VM.IsRight && swapType == VM.Type2))
-                            messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.Gray);
+                            messageButton.Background = new SolidColorBrush(Windows.UI.Colors.Gray);
                         else 
-                            messageButton.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Windows.UI.Colors.DarkGray);
+                            messageButton.Background = new SolidColorBrush(Windows.UI.Colors.DarkGray);
                         
                         messageButton.Click += this.Click;
                         MyStack.Children.Add(messageButton);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Currency_conversion
 {
@@ -19,7 +15,7 @@ namespace Currency_conversion
             _names = dataGet.GetNames();
 
         }
-        private double ConvertToZero(double value, string type)
+        private double ConvertToAbsolute(double value, string type)
         {
             double ret = value;
             if (type != null && value != 0)
@@ -35,7 +31,7 @@ namespace Currency_conversion
             return ret;
         }
 
-        private double ConvertFromZero(double value, string type)
+        private double ConvertFromAbsolute(double value, string type)
         {
             double ret = value;
             if (type != null && value != 0)
@@ -53,7 +49,7 @@ namespace Currency_conversion
 
         public double Convert(double value1, string type1, string type2)
         {
-            return ConvertFromZero(ConvertToZero(value1, type1), type2);
+            return ConvertFromAbsolute(ConvertToAbsolute(value1, type1), type2);
         }
 
     }

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Currency_conversion
+﻿namespace Currency_conversion
 {
     internal class MainViewModel : MainViewModelBase
     {
         private double _value1 = 1;
         private double _value2 = 1;
         private SwapViewModel _swapViewModel = new SwapViewModel();
+        private CustomConvector _customConvector = null;
 
         public void init()
         {
-            _swapViewModel._customConvector = new CustomConvector(new FromSite());
+            _swapViewModel.init();
+            _customConvector = _swapViewModel.GetCustomConvector();
         }
         public double Value1
         {
@@ -27,7 +23,7 @@ namespace Currency_conversion
                 if (_value1 != value)
                 {
                     _value1 = value;
-                    _value2 = _swapViewModel._customConvector.Convert(_value1, Type1, Type2);
+                    _value2 = _customConvector.Convert(_value1, Type1, Type2);
                     OnPropertyChanged("Value1");
                     OnPropertyChanged("Value2");
                 }
@@ -45,7 +41,7 @@ namespace Currency_conversion
                 if (_value2 != value)
                 {
                     _value2 = value;
-                    _value1 = _swapViewModel._customConvector.Convert(_value2, Type2, Type1);
+                    _value1 = _customConvector.Convert(_value2, Type2, Type1);
                     OnPropertyChanged("Value1");
                     OnPropertyChanged("Value2");
                 }
@@ -77,7 +73,8 @@ namespace Currency_conversion
         public void SetSwapViewModel(SwapViewModel swapViewModel)
         {
             _swapViewModel= swapViewModel;
-            _value2 = _swapViewModel._customConvector.Convert(_value1, Type1, Type2);
+            _customConvector = swapViewModel.GetCustomConvector();
+            _value2 = _customConvector.Convert(_value1, Type1, Type2);
             OnPropertyChanged("Value2");
             OnPropertyChanged("Type1");
             OnPropertyChanged("Type2");

@@ -125,7 +125,7 @@
     <Compile Include="Model\Also\FromSite.cs" />
     <Compile Include="Model\CustomConvector.cs" />
     <Compile Include="Model\ForJson\Example.cs" />
-    <Compile Include="Model\Interfaces\DataGet.cs" />
+    <Compile Include="Interfaces\DataGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SwapType.xaml.cs">
       <DependentUpon>SwapType.xaml</DependentUpon>
